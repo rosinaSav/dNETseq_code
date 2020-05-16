@@ -1,7 +1,7 @@
 This repository contains some of the Python code used to perform the analyses reported
 in the dNET-seq paper (reference TBA). (The remainder of the Python code can be found in
 https://github.com/kennyrebelo). Importantly, this repository is intended merely as
-documentation of the methods. I haven't checked that the code that it runs on
+documentation of the methods. I haven't checked that the code runs on
 systems other than my own and the documentation of dependencies is not systematic
 (although an effort was made to make peak_caller.py a little more user-friendly than
 the others). The code was developed using Python3.7 on a Mac (10.14.6).
