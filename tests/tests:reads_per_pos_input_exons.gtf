@@ -1,0 +1,7 @@
+chr2L	FlyBase	exon	1	8	.	+	.	gene_id "FBgn0031081"; gene_symbol "Nep3"; transcript_id "FBtr0307554"; transcript_symbol "Nep3-RB";
+chr2L	FlyBase	exon	13	16	.	+	.	gene_id "FBgn0031081"; gene_symbol "Nep3"; transcript_id "FBtr0307554"; transcript_symbol "Nep3-RB";
+chr2L	FlyBase	exon	21	34	.	+	.	gene_id "FBgn0031081"; gene_symbol "Nep3"; transcript_id "FBtr0307554"; transcript_symbol "Nep3-RB";
+chr2L	FlyBase	exon	32	34	.	-	.	gene_id "FBgn0031081"; gene_symbol "Nep3"; transcript_id "FBtr0307600"; transcript_symbol "Nep3-RB";
+chr2L	FlyBase	exon	25	30	.	-	.	gene_id "FBgn0031081"; gene_symbol "Nep3"; transcript_id "FBtr0307600"; transcript_symbol "Nep3-RB";
+chr2L	FlyBase	exon	9	20	.	-	.	gene_id "FBgn0031081"; gene_symbol "Nep3"; transcript_id "FBtr0307600"; transcript_symbol "Nep3-RB";
+chr2L	FlyBase	exon	4	6	.	-	.	gene_id "FBgn0031081"; gene_symbol "Nep3"; transcript_id "FBtr0307600"; transcript_symbol "Nep3-RB";

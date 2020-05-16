@@ -1,0 +1,5 @@
+2L	FlyBase	exon	13	20	.	+	.	gene_id "FBgn1"; gene_symbol "drl"; transcript_id "FBtr33"; transcript_symbol "drl-RA";
+2L	FlyBase	exon	30	38	.	+	.	gene_id "FBgn1"; gene_symbol "drl"; transcript_id "FBtr33"; transcript_symbol "drl-RA";
+2L	FlyBase	exon	60	70	.	+	.	gene_id "FBgn1"; gene_symbol "drl"; transcript_id "FBtr33"; transcript_symbol "drl-RA";
+2L	FlyBase	exon	14	350	.	+	.	gene_id "FBgn2"; gene_symbol "trl"; transcript_id "FBtr44"; transcript_symbol "trl-RA";
+2L	FlyBase	start_codon	729	731	.	+	0	gene_id "FBgn3"; gene_symbol "vrl"; transcript_id "FBtr55"; transcript_symbol "vrl-RA";

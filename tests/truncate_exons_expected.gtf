@@ -1,0 +1,6 @@
+2L	FlyBase	exon	2	4	.	+	.	gene_id "FBgn0032082"; gene_symbol "CG18088"; transcript_id "FBtr0332186"; transcript_symbol "CG18088-RB";
+2L	FlyBase	exon	9	12	.	+	.	gene_id "FBgn0032082"; gene_symbol "CG18088"; transcript_id "FBtr0332187"; transcript_symbol "CG18088-RC";
+2L	FlyBase	exon	17	19	.	+	.	gene_id "FBgn0032082"; gene_symbol "CG18088"; transcript_id "FBtr0332187"; transcript_symbol "CG18088-RC";
+2L	FlyBase	exon	3	5	.	-	.	gene_id "FBgn0032082"; gene_symbol "CG18088"; transcript_id "FBtr0332186"; transcript_symbol "CG18088-RB";
+2L	FlyBase	exon	10	13	.	-	.	gene_id "FBgn0032082"; gene_symbol "CG18088"; transcript_id "FBtr0332187"; transcript_symbol "CG18088-RC";
+2L	FlyBase	exon	18	20	.	-	.	gene_id "FBgn0032082"; gene_symbol "CG18088"; transcript_id "FBtr0332187"; transcript_symbol "CG18088-RC";
