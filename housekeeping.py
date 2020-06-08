@@ -103,18 +103,18 @@ def parse_arguments(description, arguments, floats = None, flags = None, default
             help_info = detailed_help[pos]
         else:
             help_info = argument
+        if pos in floats:
+            curr_type = float
+        elif pos in ints:
+            curr_type = int
+        else:
+            curr_type = str
         if pos in flags:
             if pos in defaults:
-                parser.add_argument("--{0}".format(argument), action="store", help=help_info, nargs='?', default=defaults[pos])
+                parser.add_argument("--{0}".format(argument), action="store", type = curr_type, help=help_info, nargs='?', default=defaults[pos])
             else:
                 parser.add_argument("--{0}".format(argument), action="store_true", help=help_info)
         else:
-            if pos in floats:
-                curr_type = float
-            elif pos in ints:
-                curr_type = int
-            else:
-                curr_type = str
             parser.add_argument(argument, type = curr_type, help = help_info)
     args = parser.parse_args()
     return(args)
