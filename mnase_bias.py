@@ -1,3 +1,6 @@
+'''Create a control set that has the same nucleotide composition at 5' ends as a
+true NET-seq dataset.'''
+
 import coord_ops as co
 import csv
 import housekeeping as hk
