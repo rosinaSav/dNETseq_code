@@ -116,7 +116,7 @@ def main():
     trans_active_genes = rw.read_many_fields(active_genes_file, "\t")[1:]
     trans_active_genes = [i[3] for i in trans_active_genes]
     transcripts_file = "{0}_transcripts_all.bed".format(gtf[:-4])
-    co.get_transcripts(gtf, transcripts_file)
+    co.get_transcripts(gtf, transcripts_file, add_chr=True)
 
     transcripts_dict = {}
     # this will be used for getting the k-mers in the transcripts
