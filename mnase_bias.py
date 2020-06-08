@@ -1,9 +1,7 @@
-'''Create a control set that has the same nucleotide composition at 5' ends as a
-true NET-seq dataset.'''
-
 import coord_ops as co
 import csv
 import housekeeping as hk
+import os
 import random
 import read_and_write as rw
 
@@ -38,9 +36,9 @@ def map_kmers_to_positions(fasta, k = 2, focal_pos = 1):
 
 def pick_random_positions(polII_file, dints_fasta, outfile, kmer_dict, transcripts_dict, chrom_sizes = None):
     """
-    Replace NET-seq reads with simulated reads that start with the same 6-mer.
+    Replace NET-seq reads with simulated reads that start with the same 4-mer.
     :param polII_file: NET-seq reads
-    :param dints_fasta: FASTA file with only the -3:+3 6-mer of the NET-seq reads,
+    :param dints_fasta: FASTA file with only the -2:+2 4-mer of the NET-seq reads,
     has to be in the same order as the polII_file
     :param outfile: output file, same format as polII_file
     :param kmer_dict: dictionary of kmer positions as output by map_kmers_to_positions()
@@ -82,18 +80,6 @@ def pick_random_positions(polII_file, dints_fasta, outfile, kmer_dict, transcrip
                 writer.writerow(new_line)
 
 def transpose_to_new_coords(transcripts_dict, random_pos, length, chrom_sizes = None):
-    """
-    Once a random transcript and a random position in that transcript have been
-    picked, transform from relative transcript coordinates to absolute chromosomal
-    coordinates.
-    :param transcripts_dict: Dictionary with transcript IDs as keys and
-    transcript GTF lines as values.
-    :param random_pos: a tuple with a transcript ID as the first element and a
-    position in that transcript (0-based integer) as the second element.
-    :param length: length of the read
-    :param chrom_sizes: dictionary with chromosome lengths
-    :return: a tuple with the chromosoaml coordinates of the simulated read
-    """
     picked_trans = transcripts_dict[random_pos[0]]
     strand = picked_trans[5]
     new_chrom = picked_trans[0]
@@ -116,17 +102,19 @@ def transpose_to_new_coords(transcripts_dict, random_pos, length, chrom_sizes = 
 def main():
     description = "Generate a NET-seq control set that would have the same distribution of -2:2 nucleotides" \
                   "as the true set."
-    args = hk.parse_arguments(description, ["active_genes_file", "transcripts_file", "PolII_file", "fasta", "outfile", "chrom_sizes"])
-    active_genes_file, transcripts_file, PolII_file, fasta, outfile, chrom_sizes = args.active_genes_file, args.transcripts_file, args.PolII_file, args.fasta, args.outfile, args.chrom_sizes
+    args = hk.parse_arguments(description, ["active_genes_file", "gtf", "PolII_file", "fasta", "outfile", "chrom_sizes"])
+    active_genes_file, gtf, PolII_file, fasta, outfile, chrom_sizes = args.active_genes_file, args.gtf, args.PolII_file, args.fasta, args.outfile, args.chrom_sizes
 
-    # read chromosome lengths from file and format as a dictionary
     chrom_sizes = rw.read_many_fields(chrom_sizes, delimiter = "\t")
     chrom_sizes = hk.list_to_dict(chrom_sizes, 0, 1, intify=True)
 
-    # get transcriptionally active genes
+    # get transcriptionally active genes and make a BED file with their coordinates
     print("Getting the coordinates of transcriptionally active genes...")
     trans_active_genes = rw.read_many_fields(active_genes_file, "\t")[1:]
     trans_active_genes = [i[3] for i in trans_active_genes]
+    transcripts_file = "{0}_transcripts_all.bed".format(gtf[:-4])
+    co.get_transcripts(gtf, transcripts_file)
+
     transcripts_dict = {}
     # this will be used for getting the k-mers in the transcripts
     filtered_transcripts_file_plus2 = "{0}_trans_act_only_plus3.bed".format(transcripts_file[:-4])
@@ -138,6 +126,8 @@ def main():
         writer2 = csv.writer(ft_file2, delimiter="\t")
         for line in reader:
             if line[3] in trans_active_genes:
+                # if line[0][0] not in ["G", "K"]:
+                #     line[0] = "chr{0}".format(line[0])
                 writer.writerow(line)
                 # this is because if a read falls at the first position, you will need to know the
                 # preceding two bases. Same if it falls at the last position.
@@ -176,7 +166,7 @@ def main():
 
     print("Removing reads that overlap potential splice intermediate positions...")
     no_si_snr_file = "{0}_snr_no_si.bed".format(outfile[:-4])
-    co.intersect_bed(snr_file, "data/Genomes/GTFs/dm6/dmel-all-r6.18_exon_ends_chr.gtf", force_strand=True, exclude = True, no_dups=False, output_file=no_si_snr_file)
+    co.intersect_bed(snr_file, "data/Genomes/GTFs/dm6/dmel-all-r6.18_exon_ends_chr.gtf", force_strand=True, exclude = True, no_dups=False)
 
 if __name__ == "__main__":
     main()
