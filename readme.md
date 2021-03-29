@@ -21,6 +21,9 @@ filter_out_intron_lariats_and_splice_intermediates.py: Given a BED file of NET-s
 last nucleotide of an exon (putative splicing intermediates)
 or the last nucleotide of an intron (putative intron lariats).
 
+get_IL_count.py: Make a BED file containing the number of putative intron lariat reads
+mapping to each intron.
+
 make_stats_for_splice_sites.py: Make a file with various gene architecture
 statistics for a set of introns.
 
@@ -32,7 +35,11 @@ higher than expected by chance for a given transcript.
 
 peak_distrib.py: Build meta-profile of peak/read densities.
 
+readthrough.py: Make a meta-gene with read density around the TES for different genes.
+
 splice_distance.py: Identify spliced.unspliced reads and build a meta-profile for either.
+
+write_TSS.py: Write the coordinates of the region around the TSS into a BED file.
 
 ---Modules---
 
